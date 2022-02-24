@@ -4,14 +4,12 @@ const cors = require("cors");
 var path = require("path");
 var rfs = require("rotating-file-stream");
 const connectDB = require("./config/db");
-const colors = require("colors");
 const errorHandler = require("./middleware/error");
 var morgan = require("morgan");
 const logger = require("./middleware/logger");
 const fileupload = require("express-fileupload");
 // Router оруулж ирэх
-const categoriesRoutes = require("./routes/categories");
-const booksRoutes = require("./routes/books");
+const newsRoutes = require("./routes/news");
 
 // Аппын тохиргоог process.env рүү ачаалах
 dotenv.config({ path: "./config/config.env" });
@@ -32,8 +30,7 @@ app.use(express.json());
 app.use(fileupload());
 app.use(logger);
 app.use(morgan("combined", { stream: accessLogStream }));
-app.use("/api/v1/categories", categoriesRoutes);
-app.use("/api/v1/books", booksRoutes);
+app.use("/api/v1/news", newsRoutes);
 app.use(errorHandler);
 
 const server = app.listen(
@@ -42,7 +39,7 @@ const server = app.listen(
 );
 
 process.on("unhandledRejection", (err, promise) => {
-  console.log(`Алдаа гарлаа : ${err.message}`.underline.red.bold);
+  console.log(`Алдаа гарлаа : ${err.message}`);
   server.close(() => {
     process.exit(1);
   });

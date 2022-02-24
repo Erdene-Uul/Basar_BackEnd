@@ -9,7 +9,7 @@ const connectDB = async () => {
   });
 
   console.log(
-    `MongoDB холбогдлоо : ${conn.connection.host}`.cyan.underline.bold
+    `MongoDB холбогдлоо : ${conn.connection.host}`
   );
 };
 
