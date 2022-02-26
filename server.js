@@ -10,7 +10,7 @@ const logger = require("./middleware/logger");
 const fileupload = require("express-fileupload");
 // Router оруулж ирэх
 const newsRoutes = require("./routes/news");
-
+const commercialRoutes = require("./routes/commercial");
 // Аппын тохиргоог process.env рүү ачаалах
 dotenv.config({ path: "./config/config.env" });
 
@@ -31,6 +31,7 @@ app.use(fileupload());
 app.use(logger);
 app.use(morgan("combined", { stream: accessLogStream }));
 app.use("/api/v1/news", newsRoutes);
+app.use("/api/v1/commercials", commercialRoutes);
 app.use(errorHandler);
 
 const server = app.listen(

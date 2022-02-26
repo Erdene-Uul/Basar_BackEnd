@@ -1,12 +1,12 @@
-const News = require("../models/News");
+const Commercial = require("../models/Commercial");
 
-exports.getNews = async (req, res, next) => {
+exports.getCommercials = async (req, res, next) => {
   try {
-    const news = await News.find();
+    const commercials = await Commercial.find();
 
     res.status(200).json({
       success: true,
-      data: news,
+      data: commercials,
     });
   } catch (err) {
     res.status(400).json({
@@ -16,20 +16,20 @@ exports.getNews = async (req, res, next) => {
   }
 };
 
-exports.getContent= async (req, res, next) => {
+exports.getCommercial= async (req, res, next) => {
   try {
-    const content = await News.findById(req.params.id);
+    const commercial = await Commercial.findById(req.params.id);
 
-    if (!content) {
+    if (!commercial) {
       return res.status(400).json({
         success: false,
-        error: req.params.id + " ID-тэй мэдээ байхгүй.",
+        error: req.params.id + " ID-тэй зар байхгүй.",
       });
     }
 
     res.status(200).json({
       success: true,
-      data: content,
+      data: commercial,
     });
   } catch (err) {
     res.status(400).json({
@@ -39,15 +39,15 @@ exports.getContent= async (req, res, next) => {
   }
 };
 
-exports.createContent = async (req, res, next) => {
+exports.createCommercial = async (req, res, next) => {
   console.log("data: ", req.body);
 
   try {
-    const content = await News.create(req.body);
+    const commercial = await Commercial.create(req.body);
 
     res.status(200).json({
       success: true,
-      data: content,
+      data: commercial,
     });
   } catch (err) {
     res.status(400).json({
@@ -57,23 +57,23 @@ exports.createContent = async (req, res, next) => {
   }
 };
 
-exports.updateContent = async (req, res, next) => {
+exports.updateCommercial = async (req, res, next) => {
   try {
-    const content = await News.findByIdAndUpdate(req.params.id, req.body, {
+    const commercial = await Commercial.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
       runValidators: true,
     });
 
-    if (!content) {
+    if (!commercial) {
       return res.status(400).json({
         success: false,
-        error: req.params.id + " ID-тэй мэдээ байхгүй.",
+        error: req.params.id + " ID-тэй зар байхгүй.",
       });
     }
 
     res.status(200).json({
       success: true,
-      data: content,
+      data: commercial,
     });
   } catch (err) {
     res.status(400).json({
@@ -83,20 +83,20 @@ exports.updateContent = async (req, res, next) => {
   }
 };
 
-exports.deleteContent = async (req, res, next) => {
+exports.deleteCommercial = async (req, res, next) => {
   try {
-    const content = await News.findByIdAndDelete(req.params.id);
+    const commercial = await Commercial.findByIdAndDelete(req.params.id);
 
-    if (!content) {
+    if (!commercial) {
       return res.status(400).json({
         success: false,
-        error: req.params.id + " ID-тэй мэдээ байхгүй.",
+        error: req.params.id + " ID-тэй зар байхгүй.",
       });
     }
 
     res.status(200).json({
       success: true,
-      data: content,
+      data: commercial,
     });
   } catch (err) {
     res.status(400).json({

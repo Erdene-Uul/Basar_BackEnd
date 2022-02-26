@@ -5,7 +5,6 @@ const NewsSchema = new mongoose.Schema(
     title: {
       type: String,
       required: [true, "Мэдээний гарчгийг оруулна уу"],
-      unique: true,
       trim: true,
     },
     photo: {
@@ -18,11 +17,18 @@ const NewsSchema = new mongoose.Schema(
       trim: true,
     },
     content: {
-      type: String,
-      required: [true, "Мэдээгээ оруулна уу"],
-      trim: true,
-      maxlength: [5000, "Мэдээний урт дээд тал нь 5000 тэмдэгт байх ёстой."],
+      content1: {
+        type: String,
+        required: [true, "Мэдээгээ оруулна уу"],
+        maxlength: [5000, "Мэдээний урт дээд тал нь 5000 тэмдэгт байх ёстой."],
+      },
+      content2: {
+        type: String,
+        required: [true, "Мэдээгээ оруулна уу"],
+        maxlength: [5000, "Мэдээний урт дээд тал нь 5000 тэмдэгт байх ёстой."],
+      }
     },
+
     author: {
       name: String,
       photo: String,
